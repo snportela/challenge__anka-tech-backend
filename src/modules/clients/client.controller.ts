@@ -18,7 +18,6 @@ export async function registerClientHandler(
 
   try {
     const client = await createClient(body);
-
     return res.code(201).send(client);
   } catch (error) {
     return res.code(500).send(error);

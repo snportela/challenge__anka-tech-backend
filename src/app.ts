@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import clientRoutes from "./modules/clients/client.route";
+import { assetRoutes } from "./modules/assets/asset.route";
 
 const app = Fastify();
 
@@ -10,8 +11,8 @@ app.get("/", async () => {
 });
 
 async function main() {
-
   app.register(clientRoutes, { prefix: "api/clients" });
+  app.register(assetRoutes, { prefix: "api/assets" });
 
   try {
     app.listen({ port: PORT, host: "0.0.0.0" });
