@@ -1,20 +1,18 @@
 import { FastifyInstance } from "fastify";
-import { registerClientHandler } from "./client.controller";
-import { $ref } from "./client.schema";
+import {
+  deleteClientHandler,
+  getClientsHandler,
+  registerClientHandler,
+  retrieveClientHandler,
+  updateClientHandler,
+} from "./client.controller";
 
-async function clientRoutes(server: FastifyInstance) {
-  server.post(
-    "/",
-    {
-      schema: {
-        body: $ref("createClientSchema"),
-        response: {
-          201: $ref("createClientResponseSchema"),
-        },
-      },
-    },
-    registerClientHandler
-  );
+async function clientRoutes(app: FastifyInstance) {
+  app.post("/", registerClientHandler);
+  app.get("/", getClientsHandler);
+  app.get("/:id", retrieveClientHandler);
+  app.put("/:id", updateClientHandler);
+  app.delete("/:id", deleteClientHandler);
 }
 
 export default clientRoutes;

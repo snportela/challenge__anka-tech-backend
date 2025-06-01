@@ -1,6 +1,5 @@
 import Fastify from "fastify";
 import clientRoutes from "./modules/clients/client.route";
-import { clientsSchemas } from "./modules/clients/client.schema";
 
 const app = Fastify();
 
@@ -11,10 +10,6 @@ app.get("/", async () => {
 });
 
 async function main() {
-
-  for(const schema of clientsSchemas) {
-    app.addSchema(schema);
-  }
 
   app.register(clientRoutes, { prefix: "api/clients" });
 
