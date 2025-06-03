@@ -4,7 +4,7 @@ import { assetRoutes } from "./modules/assets/asset.route";
 
 const app = Fastify();
 
-const PORT: number = parseInt(<string>process.env.PORT, 10) || 3000;
+const PORT: number = parseInt(<string>process.env.PORT, 10) || 5000;
 
 app.get("/", async () => {
   return { status: "OK" };
@@ -16,7 +16,7 @@ async function main() {
 
   try {
     app.listen({ port: PORT, host: "0.0.0.0" });
-    console.log("Server ready at port 3000");
+    console.log("Server ready at port " + PORT);
   } catch (error) {
     console.log(error);
     process.exit(1);

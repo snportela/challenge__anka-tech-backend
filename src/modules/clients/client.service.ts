@@ -1,5 +1,5 @@
 import prisma from "../../utils/prisma";
-import { CreateClientInput } from "./client.schema";
+import { CreateClientInput, SearchQuerySchema } from "./client.schema";
 
 export async function createClient(data: CreateClientInput) {
   return await prisma.client.create({
@@ -29,3 +29,12 @@ export async function deleteClientById(id: number) {
     where: { id },
   });
 }
+
+export async function searchClientByName(query: SearchQuerySchema) {
+  const whereClause = query.name ? { name: { contains: query.name } } : {};
+
+  return prisma.client.findMany({
+    where: whereClause,
+  });
+}
+

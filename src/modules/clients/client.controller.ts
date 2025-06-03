@@ -4,9 +4,14 @@ import {
   deleteClientById,
   findClientById,
   findClients,
+  searchClientByName,
   updateClientById,
 } from "./client.service";
-import { CreateClientInput, clientParamsSchema } from "./client.schema";
+import {
+  CreateClientInput,
+  clientParamsSchema,
+  searchQuerySchema,
+} from "./client.schema";
 
 export async function registerClientHandler(
   req: FastifyRequest<{
@@ -28,8 +33,17 @@ export async function getClientsHandler(
   req: FastifyRequest,
   res: FastifyReply
 ) {
+  const query = searchQuerySchema.parse(req.query);
+
   try {
-    const clients = await findClients();
+    let clients;
+
+    if (query) {
+      clients = await searchClientByName(query);
+    } else {
+      clients = await findClients();
+    }
+
     return res.code(200).send(clients);
   } catch (error) {
     return res.code(500).send(error);
