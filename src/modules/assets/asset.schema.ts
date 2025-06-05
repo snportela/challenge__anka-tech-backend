@@ -12,6 +12,7 @@ export const assetParamsSchema = z.object({
 
 export const assetQuerySchema = z.object({
   clientId: z.coerce.number().int().positive().optional(),
+  name: z.string().optional(),
 });
 
 export type CreateAssetInput = z.infer<typeof createAssetSchema>;

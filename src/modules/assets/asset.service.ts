@@ -7,11 +7,19 @@ export async function createAsset(data: CreateAssetInput) {
   });
 }
 
-export async function findAssets(query: { clientId?: number }) {
-  return await prisma.asset.findMany({
+export async function findAssets(query: { clientId?: number; name?: string }) {
+  const assets = await prisma.asset.findMany({
     where: query.clientId ? { clientId: query.clientId } : {},
-    include: { client: { select: { name: true, email: true } } },
+    include: { client: true },
   });
+
+  if (query.name) {
+    return assets.filter((asset) =>
+      asset.name.toLowerCase().includes(query.name!.toLowerCase())
+    );
+  }
+
+  return assets;
 }
 
 export async function findAssetById(id: number) {
