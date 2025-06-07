@@ -1,8 +1,16 @@
+version: '3'
 services:
   db:
     image: mysql:8.0.40
+    restart: always
+    container_name: db
+    environment:
+      - MYSQL_DATABASE=investments
+      - MYSQL_ROOT_PASSWORD=Galadriel123
     ports:
       - "3306:3306"
+    expose:
+      - "3306"
     volumes:
       - db_data:/var/lib/mysql
 
@@ -11,12 +19,10 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: "mysql://root:Galadriel123%40@localhost:3306/investments"
+      DATABASE_URL: "mysql://root:Galadriel123@db:3306/investments"
     depends_on:
       - db
-    # volumes:
-    #   # - ./backend:/app
-    #   # - /app/node_modules
+    command: bash -c "npx prisma migrate dev --name init && npm run dev"
 
 volumes:
   db_data:
