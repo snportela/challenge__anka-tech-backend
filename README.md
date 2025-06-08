@@ -1,8 +1,11 @@
 # Node.js + Fastify Simple API
+
 ![United Kingdom](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png "United Kingdom") API built with Node.js, Fastify, Prisma and Zod. Includes CRUD for Clients and Assets.
 
 ![Brazil](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Brazil")
 API implementada utilizando Node.js, Fastify, Prisma e Zod. Inclui CRUD para Clientes e Ativos.
+
+Frontend: https://github.com/snportela/challenge__anka-tech-frontend
 
 ## 💻 Technologies
 
@@ -16,17 +19,19 @@ API implementada utilizando Node.js, Fastify, Prisma e Zod. Inclui CRUD para Cli
 
 ## 🚀 Getting started
 
-* Install Docker, if you don't have it already. 
-	* Instale o Docker, caso já não tenha.  
-* Clone the repository:
-	* Clonar o repositório.
-    
+- Install Docker, if you don't have it already.
+  - Instale o Docker, caso já não tenha instalado.
+- Clone the repository:
+  - Clonar o repositório.
+
 ```
 git clone https://github.com/snportela/challenge__anka-tech-backend
 ```
 
 - Build the docker-compose file with this command:
-	* Executar o arquivo docker-compose com o comando:
+  - Executar o arquivo docker-compose com o comando:
+
 ```
+cd challenge__anka-tech-backend
 docker-compose up --build
 ```
